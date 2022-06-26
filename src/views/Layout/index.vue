@@ -1,6 +1,7 @@
 <template>
   <div>
-    <van-tabbar route>
+    <router-view></router-view>
+    <van-tabbar route class="fix">
       <van-tabbar-item replace to="" icon="home-o"
         >首页 <i class="toutiao toutiao-shouye" slot="icon"></i>
       </van-tabbar-item>
@@ -14,7 +15,6 @@
         >我的 <i class="toutiao toutiao-wode" slot="icon"></i
       ></van-tabbar-item>
     </van-tabbar>
-    <router-view></router-view>
   </div>
 </template>
 
@@ -30,5 +30,10 @@ export default {
 }
 /deep/ .van-tabbar-item__text {
   font-size: 20px !important;
+}
+.fix {
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
 }
 </style>
