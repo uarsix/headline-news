@@ -1,17 +1,17 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view class="main"></router-view>
     <van-tabbar route class="fix">
-      <van-tabbar-item replace to="" icon="home-o"
+      <van-tabbar-item replace to="home" icon="home-o"
         >首页 <i class="toutiao toutiao-shouye" slot="icon"></i>
       </van-tabbar-item>
-      <van-tabbar-item replace to="" icon="home-o"
+      <van-tabbar-item replace to="video" icon="home-o"
         >视频 <i class="toutiao toutiao-shipin" slot="icon"></i
       ></van-tabbar-item>
-      <van-tabbar-item replace to="" icon="home-o"
+      <van-tabbar-item replace to="question" icon="home-o"
         >问答 <i class="toutiao toutiao-wenda" slot="icon"></i
       ></van-tabbar-item>
-      <van-tabbar-item replace to="" icon="search"
+      <van-tabbar-item replace to="my" icon="search"
         >我的 <i class="toutiao toutiao-wode" slot="icon"></i
       ></van-tabbar-item>
     </van-tabbar>
@@ -25,6 +25,10 @@ export default {
 </script>
 
 <style scoped lang='less'>
+.main {
+  padding-bottom: 100px;
+  background: #f5f7f9;
+}
 .toutiao {
   font-size: 40px;
 }

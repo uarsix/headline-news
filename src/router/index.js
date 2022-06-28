@@ -14,10 +14,10 @@ const routes = [{
   component: Layout,
   redirect: '/home',
   children: [
-    { path: '/home', component: Home },
-    { path: '/video', component: Video },
-    { path: '/question', component: Question },
-    { path: '/my', component: My }
+    { path: '/home', component: Home, name: 'home' },
+    { path: '/video', component: Video, name: 'video' },
+    { path: '/question', component: Question, name: 'question' },
+    { path: '/my', component: My, name: 'my' }
   ]
 }, {
   path: '/login',

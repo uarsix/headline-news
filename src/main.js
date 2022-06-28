@@ -6,6 +6,7 @@ import Vant from 'vant'
 import 'vant/lib/index.css'
 import 'amfe-flexible'
 import '@/styles/icon.less'
+import '@/styles/reset.less'
 // 引入全部样式
 import 'vant/lib/index.less'
 // 引入单个组件样式

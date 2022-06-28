@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import store from '@/store/'
 
 /**
 * 获取验证码
@@ -24,6 +25,21 @@ export const login = ({ mobile, code }) => {
     data: {
       mobile,
       code
+    }
+  })
+}
+
+/*
+* 登陆获取个人资料
+* @return
+*/
+console.log(store.state.user.token)
+export const getUserInfo = () => {
+  return request({
+    url: 'user',
+    headers: {
+
+      Authorization: 'Bearer ' + store.state.user.token
     }
   })
 }
