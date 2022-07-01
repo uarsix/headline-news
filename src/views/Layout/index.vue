@@ -1,6 +1,8 @@
 <template>
   <div>
-    <router-view class="main"></router-view>
+    <keep-alive :include="['home']">
+      <router-view class="main"></router-view>
+    </keep-alive>
     <van-tabbar route class="fix">
       <van-tabbar-item replace to="home" icon="home-o"
         >首页 <i class="toutiao toutiao-shouye" slot="icon"></i>
@@ -39,5 +41,9 @@ export default {
   position: fixed !important;
   bottom: 0;
   left: 0;
+}
+/deep/ .van-pull-refresh {
+  height: calc(100vh - 274px);
+  overflow: auto;
 }
 </style>

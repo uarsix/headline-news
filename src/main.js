@@ -12,11 +12,25 @@ import 'vant/lib/index.less'
 // 引入单个组件样式
 import 'vant/lib/button/style/less'
 
+import dayjs from 'dayjs'
+import * as obj from '@/filter/index'
+
 Vue.use(Vant)
 Vue.config.productionTip = false
+Object.keys(obj).forEach(key => Vue.filter(key, obj[key]))
 
 new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
+setTimeout(() => {
+  // 给页面上所有的元素绑定滚动事件
+  //  只要谁滚动 就打印出来
+  const list = document.querySelectorAll('*')
+  list.forEach(item => {
+    item.onscroll = function (e) {
+
+    }
+  })
+}, 2000)
