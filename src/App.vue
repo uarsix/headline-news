@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <h1>根skeleton</h1>
-    <router-view />
+    <!-- 一级占位 -->
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -9,5 +9,5 @@ export default {
   name: 'App'
 }
 </script>
-<style lang="less">
+<style scoped lang='less' >
 </style>
