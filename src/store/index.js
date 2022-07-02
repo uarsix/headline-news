@@ -7,13 +7,26 @@ const vuexLocal = new VueXPersistence({
 })
 export default new Vuex.Store({
   state: {
-    user: {}
+    user: {},
+    searchHistoryList: []
   },
   getters: {
   },
   mutations: {
     setUser (state, payload) {
       state.user = payload
+    },
+    setSearchHistoryList (state, payload) {
+      let arr = state.searchHistoryList
+      arr.unshift(payload)
+      arr = [...new Set(arr)]
+      state.searchHistoryList = arr
+    },
+    delAllSearchList (state) {
+      state.searchHistoryList = []
+    },
+    delHistory (state, payload) {
+      state.searchHistoryList.splice(payload, 1)
     }
   },
   actions: {

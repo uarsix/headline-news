@@ -2,14 +2,19 @@
   <div>
     <van-nav-bar title="标题" style="position: fixed; top: 0; width: 375px"
       ><template #title>
-        <van-button type="info" size="large" icon="search" class="search-btn"
+        <van-button
+          type="info"
+          size="large"
+          icon="search"
+          class="search-btn"
+          to="/search"
           >搜索</van-button
         >
       </template></van-nav-bar
     >
     <van-tabs v-model="active" animated>
       <van-tab :title="item.name" v-for="item in ChannelsList" :key="item.id">
-        <ArticleList class="listSlots" :id="item.id"></ArticleList
+        <ArticleList :id="item.id"></ArticleList
       ></van-tab>
 
       <template #nav-right>

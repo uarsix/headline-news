@@ -88,3 +88,33 @@ export const savaChannels = (channels) => {
     }
   })
 }
+/**
+ * 获取搜索建议
+ * @param {String or Number} q 搜索框输入的数据
+ * @returns
+ */
+export const getSuggestion = (q) => {
+  return request({
+    url: 'suggestion',
+    params: {
+      q
+    }
+
+  })
+}
+/**
+ * 搜索结果
+ * @param {String or Number} q 搜索框输入的数据
+ * @returns
+ */
+// eslint-disable-next-line camelcase
+export const getSearchResult = ({ page = 2, per_page = 50, q }) => {
+  return request({
+    url: 'search',
+    params: {
+      page,
+      per_page,
+      q
+    }
+  })
+}
