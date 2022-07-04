@@ -19,7 +19,7 @@
       <SearchSuggest
         v-else
         :searchText="searchText"
-        @search.stop="onSearch"
+        @search="onSearch"
       ></SearchSuggest>
     </template>
   </div>

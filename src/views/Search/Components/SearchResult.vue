@@ -65,7 +65,6 @@ export default {
           return
         }
         this.resultList.push(...res.data.data.results)
-        console.log(res.data.data.results)
         this.loading = false
         this.refreshing = false
       } catch (err) { console.log(err) }

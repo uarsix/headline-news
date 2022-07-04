@@ -9,7 +9,7 @@ import store from '@/store/'
 
 export const getSnsCode = (mobile) => {
   return request({
-    url: `/sms/codes/${mobile}`
+    url: `sms/codes/${mobile}`
   })
 }
 
@@ -116,5 +116,96 @@ export const getSearchResult = ({ page = 2, per_page = 50, q }) => {
       per_page,
       q
     }
+  })
+}
+
+/**
+ * 新闻详情
+ * @returns
+ */
+export const getArticle = (article_id) => {
+  return request({
+    url: `articles/${article_id}`
+  })
+}
+
+/**
+ * 关注用户
+ * @param {[Number|String]} target 用户id
+ * @returns
+ */
+export const addUser = (target) => {
+  return request({
+    url: 'user/followings',
+    method: 'POST',
+    data: {
+      target
+    }
+  })
+}
+
+/**
+ * 取消关注
+ * @param {[Number|String]} target 用户id
+ * @returns
+ */
+export const delUser = (target) => {
+  return request({
+    url: `user/followings/${target}`,
+    method: 'DELETE'
+  })
+}
+
+/**
+ * 收藏
+ * @param {[Number|String]} target 收藏文章的id
+ * @returns
+ */
+export const addCollected = (target) => {
+  return request({
+    url: 'article/collections',
+    method: 'POST',
+    data: {
+      target
+    }
+  })
+}
+
+/**
+ * 取消收藏
+ * @param {[Number|String]} target 收藏文章的id
+ * @returns
+ */
+export const delCollected = (target) => {
+  return request({
+    url: `article/collections/${target}`,
+    method: 'DELETE'
+  })
+}
+
+/**
+ * 点赞
+ * @param {[Number|String]} target 点赞文章的id
+ * @returns
+ */
+export const addLiking = (target) => {
+  return request({
+    url: 'article/likings ',
+    method: 'POST',
+    data: {
+      target
+    }
+  })
+}
+
+/**
+ * 取消点赞
+ * @param {[Number|String]} target 取消点赞文章的id
+ * @returns
+ */
+export const cancelLiking = (target) => {
+  return request({
+    url: `article/likings/${target}`,
+    method: 'DELETE'
   })
 }
