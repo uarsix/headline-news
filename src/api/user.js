@@ -209,3 +209,64 @@ export const cancelLiking = (target) => {
     method: 'DELETE'
   })
 }
+
+/**
+ *
+ * @param {*} type 论类型，a-对文章(article)的评论，c-对评论(comment)的回复
+ * @param {*} source 源id，文章id或评论id
+ * @param {*} offset 获取评论数据的偏移量，值为评论id，表示从此id的数据向后取，不传表示从第一页开始读取数据
+ * @param {*} limit 获取的评论数据个数，不传表示采用后端服务设定的默认每页数据量
+ * @returns
+ */
+export const getComment = ({ source, type, limit, offset }) => {
+  return request({
+    url: 'comments',
+    params: {
+      source, type, limit, offset
+    }
+  })
+}
+
+/**
+ * 对评论或评论回复点赞
+ * @param {[Number|String]} target 要取消点赞的评论id或评论回复id
+ * @returns
+ */
+export const addCommentLike = (target) => {
+  return request({
+    method: 'POST',
+    url: 'comment/likings',
+    data: {
+      target
+    }
+  })
+}
+
+/**
+ * 取消对评论或评论回复点赞
+ * @param {[Number|String]} target 要取消点赞的评论id或评论回复id
+ * @returns
+ */
+export const delCommentLike = (target) => {
+  return request({
+    method: 'DELETE',
+    url: `comment/likings/${target}`
+  })
+}
+
+/**
+ * 发布评论
+ * @param {文章id} target
+ * @param {内容} content
+ * @param {评论id} art_id
+ * @returns
+ */
+export const addComment = ({ target, content, art_id }) => {
+  return request({
+    method: 'POST',
+    url: 'comments',
+    data: {
+      target, content, art_id
+    }
+  })
+}

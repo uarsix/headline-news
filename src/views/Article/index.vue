@@ -70,6 +70,12 @@
                 这是文章内容
               </div>
               <van-divider>正文结束</van-divider>
+              <ArticleComment
+                :source="articleList.art_id"
+                type="a"
+                :commentList="commentList"
+                @set-count="count = $event"
+              ></ArticleComment>
             </div>
           </template>
         </div>
@@ -94,10 +100,15 @@
 
     <!-- 底部区域 -->
     <div class="article-bottom" v-if="!isLoading & !!articleList.art_id">
-      <van-button class="comment-btn" type="default" round size="small"
+      <van-button
+        class="comment-btn"
+        type="default"
+        round
+        size="small"
+        @click="addCommentShow = true"
         >写评论</van-button
       >
-      <van-icon name="comment-o" :badge="articleList.read_count" color="#777" />
+      <van-icon name="comment-o" :badge="count" color="#777" />
       <CollectArticle
         :is_collected.sync="articleList.is_collected"
       ></CollectArticle>
@@ -115,15 +126,28 @@
       :options="options"
     />
     <!-- /底部区域 -->
+    <van-popup
+      v-model="addCommentShow"
+      position="bottom"
+      :style="{ height: 'auto' }"
+      ><addComment
+        v-if="addCommentShow"
+        :target="article_id"
+        @set-Comment="onNewComment"
+      ></addComment>
+    </van-popup>
+    <!-- 点击评论 -->
   </div>
 </template>
 
 <script>import { ImagePreview } from 'vant'
+import addComment from './Commpoents/addComment.vue'
 import 'github-markdown-css'
 import { getArticle } from '@/api/user'
+import ArticleComment from './Commpoents/ArticleComment.vue'
 export default {
   name: 'ArticleIndex',
-  components: {},
+  components: { ArticleComment, addComment },
   props: {
     article_id: {
       type: [Number, String],
@@ -134,7 +158,6 @@ export default {
     try {
       const res = await getArticle(this.article_id)
       this.articleList = res.data.data
-      console.log(this.articleList)
     } catch (err) {
       if (err.response && err.response.status === 404) {
         this.is404Error = true
@@ -160,6 +183,9 @@ export default {
   },
   data () {
     return {
+      count: null,
+      addCommentShow: false,
+      commentList: [],
       isLoading: true,
       articleList: {},
       is404Error: false,
@@ -173,7 +199,15 @@ export default {
       ]
     }
   },
-  computed: {}
+  computed: {},
+  methods: {
+    // 发布评论
+    onNewComment ($event) {
+      // 利用单项数据流传值 父传子，子传父，进行状态提升
+      this.commentList.unshift($event)
+      this.addCommentShow = false
+    }
+  }
 
 }
 </script>

@@ -18,6 +18,7 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     // 关闭未使用的变量提示
     'no-unused-vars': 'off',
-    'vue/valid-template-root': 'off'
+    'vue/valid-template-root': 'off',
+    'vue/no-mutating-props': 'off'
   }
 }
