@@ -2,8 +2,8 @@ import axios from 'axios'
 import store from '@/store/index'
 
 const instance = axios.create({
-  baseURL: 'http://toutiao.itheima.net/v1_0',
-  timeout: 5000
+  baseURL: 'http://toutiao.itheima.net/v1_0/'
+  // timeout: 5000
 
 })
 export default instance

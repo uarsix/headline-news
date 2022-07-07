@@ -11,14 +11,12 @@ import '@/styles/reset.less'
 import 'vant/lib/index.less'
 // 引入单个组件样式
 import 'vant/lib/button/style/less'
-
 import dayjs from 'dayjs'
 import * as obj from '@/filter/index'
-
+import '@/components'
 Vue.use(Vant)
 Vue.config.productionTip = false
 Object.keys(obj).forEach(key => Vue.filter(key, obj[key]))
-
 new Vue({
   router,
   store,
