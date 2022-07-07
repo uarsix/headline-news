@@ -218,7 +218,7 @@ export const cancelLiking = (target) => {
  * @param {*} limit 获取的评论数据个数，不传表示采用后端服务设定的默认每页数据量
  * @returns
  */
-export const getComment = ({ source, type, limit, offset }) => {
+export const getComment = ({ type, source, limit, offset }) => {
   return request({
     url: 'comments',
     params: {

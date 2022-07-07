@@ -75,6 +75,10 @@
                 type="a"
                 :commentList="commentList"
                 @set-count="count = $event"
+                @replay-show="
+                  comment = $event;
+                  isReplayShow = true;
+                "
               ></ArticleComment>
             </div>
           </template>
@@ -137,6 +141,16 @@
       ></addComment>
     </van-popup>
     <!-- 点击评论 -->
+    <van-popup
+      v-model="isReplayShow"
+      position="bottom"
+      :style="{ height: '100%' }"
+      ><ReplayComment
+        :comment="comment"
+        @replay-show="isReplayShow = false"
+        v-if="isReplayShow"
+      ></ReplayComment
+    ></van-popup>
   </div>
 </template>
 
@@ -145,9 +159,10 @@ import addComment from './Commpoents/addComment.vue'
 import 'github-markdown-css'
 import { getArticle } from '@/api/user'
 import ArticleComment from './Commpoents/ArticleComment.vue'
+import ReplayComment from './Commpoents/ReplayComment.vue'
 export default {
   name: 'ArticleIndex',
-  components: { ArticleComment, addComment },
+  components: { ArticleComment, addComment, ReplayComment },
   props: {
     article_id: {
       type: [Number, String],
@@ -190,6 +205,8 @@ export default {
       articleList: {},
       is404Error: false,
       showShare: false,
+      isReplayShow: false,
+      comment: {},
       options: [
         { name: '微信', icon: 'wechat' },
         { name: '微博', icon: 'weibo' },
@@ -206,6 +223,7 @@ export default {
       // 利用单项数据流传值 父传子，子传父，进行状态提升
       this.commentList.unshift($event)
       this.addCommentShow = false
+      this.count++
     }
   }
 

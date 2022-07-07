@@ -28,6 +28,9 @@ export default {
     target: {
       type: [String, Number],
       required: true
+    },
+    art_id: {
+      type: [String, Number]
     }
   },
   data () {
@@ -44,7 +47,7 @@ export default {
   methods: {
     async onClick () {
       try {
-        const res = await addComment({ target: this.target, content: this.message })
+        const res = await addComment({ target: this.target, content: this.message, art_id: this.art_id })
         // 传父进行状态提升
         this.$emit('set-Comment', res.data.data.new_obj)
       } catch (err) {

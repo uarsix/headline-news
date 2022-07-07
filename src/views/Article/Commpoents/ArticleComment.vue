@@ -10,6 +10,7 @@
         v-for="(item, index) in commentList"
         :key="index"
         :item="item"
+        @replay-show="$emit('replay-show', $event)"
       ></commentItem>
     </van-list>
   </div>
